@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src_generic"/>
+	<classpathentry kind="src" path="src_mac"/>
+	<classpathentry kind="src" path="src_win"/>
+	<classpathentry kind="src" path="img"/>
+	<classpathentry kind="src" path="conf"/>
+	<classpathentry kind="lib" path="lib/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="lib/examples.jar"/>
+	<classpathentry kind="lib" path="lib/jna.jar"/>
+	<classpathentry kind="lib" path="lib/nimrodlf.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
