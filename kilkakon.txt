@@ -1,0 +1,80 @@
+Kilkakon's notes:
+
+1.0.13:
+
+- Draggable property
+- SelfDestruct action
+- Scaling bug fix
+- Clarified missing imageRight error message
+
+See https://www.youtube.com/watch?v=Lcx2wVPiKUk for more details
+
+1.0.12:
+
+- Transform action
+- Shimeji scaling
+- Menu DPI awareness
+- Improved memory usage
+- 3 more languages
+
+See https://www.youtube.com/watch?v=nZ_IW5quK8g for more details
+
+1.0.11:
+
+- New menu system
+- Included nimrod theming
+- 5 more languages
+
+See https://www.youtube.com/watch?v=GUr-NiSyTM4 for more details
+
+1.0.10:
+
+- Internationalisation
+- Tweaked the build xml
+- Shimeji that fail to load will not abort the load sequence if there's other shimeji in the queue
+
+See https://www.youtube.com/watch?v=mZ0Za94i76A for more details
+
+1.0.9:
+
+- Sound and Volume attribute on Pose tags to allow playing sound files
+- Fix for Turn action
+- Improved error message dialog
+
+See https://www.youtube.com/watch?v=5CMy4xqdkrg for more details
+
+1.0.8:
+
+- Asymmetry support with new ImageRight attribute
+- New MoveWithTurn and Turn actions
+- Add Interactive Windows dialog no longer options twice
+
+See https://www.youtube.com/watch?v=RmkzZ3Shf24 for more details
+
+1.0.7:
+
+64-bit support
+BornMascot attribute for the Breed action
+Allowed Behaviour menu
+
+1.0.6:
+
+Added premultiplying to the images so translucent images work now, yay!
+
+Also did some regexing to the behaviour list so it looks nicer
+
+1.0.5:
+
+I did some basic changes to the program to make this new version. I did make an effort to contact
+the original group but they didn't reply--so I'm releasing this as is, with full credit to them. :)
+
+So cheers shimeji-ee group!
+
+I may have accidentally pressed Alt+Shift+F in Netbeans in a few of the files because I can't stand 
+if (...) { style brackets. Sorry if that offends anybody. :O
+
+The main changes I made in this version:
+
+- settings.properties instead of windows.txt and ActiveShimeji
+- New form and renamed captions and reworked menus
+- Not showing form on load

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<project name="Shimeji-ee" basedir="." default="zip">
+
+	<property name="version" value="1.0.9" />
+
+	<target name="clean">
+		<delete dir="target" />
+		<mkdir dir="target" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="target/classes" />
+		<javac destdir="target/classes" target="1.6" source="1.6" debug="yes" optimize="yes">
+			<src path="src"/>
+			<src path="src_win"/>
+			<src path="src_generic"/>
+			<classpath>
+				<fileset dir="lib" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar destfile="target/Shimeji-ee.jar" basedir="target/classes" manifest="MANIFEST.MF" />
+	</target>
+
+	<target name="zip" depends="jar">
+		<zip destfile="target/src.zip">
+			<fileset dir=".">
+				<include name="**/*" />
+				<exclude name="target/**/*" />
+				<exclude name="target" />
+				<exclude name="bin/**/*" />
+				<exclude name="bin" />
+				<exclude name=".settings/**" />
+				<exclude name=".settings" />
+				<exclude name=".classpath" />
+				<exclude name=".project" />
+				<exclude name="*.log" />
+			</fileset>
+		</zip>
+
+		<ant target="zip_package">
+			<property name="edition" value="Calm" />
+		</ant>
+		<ant target="zip_package">
+			<property name="edition" value="Professional" />
+		</ant>
+		<ant target="zip_package">
+			<property name="edition" value="Mischievous" />
+		</ant>
+	</target>
+
+	<target name="zip_package">
+		<zip destfile="target/Shimeji-ee_${version}_${edition}.zip">
+			<fileset dir="target">
+				<include name="Shimeji-ee.jar" />
+				<include name="src.zip" />
+			</fileset>
+			<mappedresources>
+				<fileset dir="conf">
+					<include name="${edition}Behavior.xml" />
+				</fileset>
+				<globmapper from="*.xml" to="conf/behaviors.xml" />
+			</mappedresources>
+			<fileset dir=".">
+				<include name="Shimeji-ee.exe" />
+				<include name="Shimeji-ee.bat" />
+				<include name="ShimejiHomePage.url" />
+				<include name="Shimeji-eeHomePage.url" />
+				<include name="originallicence.txt" />
+				<include name="originalreadme.txt" />
+				<include name="licence.txt" />
+				<include name="readme.txt" />
+				<include name="changelog.txt" />
+				<include name="img/**/*" />
+				<include name="conf/**/*" />
+				<exclude name="conf/behaviors.xml" />
+				<exclude name="conf/*Behavior.xml" />
+				<include name="lib/*" />
+			</fileset>
+		</zip>
+	</target>
+</project>
