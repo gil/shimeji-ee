@@ -18,7 +18,9 @@ class GenericEnvironment extends Environment {
 	@Override
 	public void tick() {
 		super.tick();
-		this.activeIE.setVisible(false);
+		if( this.activeIE != null ) {
+			this.activeIE.setVisible(false);
+		}
 	}
 
 	@Override
