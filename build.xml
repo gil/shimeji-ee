@@ -41,14 +41,23 @@
 			</fileset>
 		</zip>
 
-		<ant target="zip_package">
+		<ant target="generate_package">
 			<property name="edition" value="Calm" />
 		</ant>
-		<ant target="zip_package">
+		<ant target="generate_package">
 			<property name="edition" value="Professional" />
 		</ant>
-		<ant target="zip_package">
+		<ant target="generate_package">
 			<property name="edition" value="Mischievous" />
+		</ant>
+	</target>
+	
+	<target name="generate_package">
+		<ant target="zip_package">
+			<property name="edition" value="${edition}" />
+		</ant>
+		<ant target="gzip_package">
+			<property name="edition" value="${edition}" />
 		</ant>
 	</target>
 
@@ -81,5 +90,38 @@
 				<include name="lib/*" />
 			</fileset>
 		</zip>
+	</target>
+	
+	<target name="gzip_package">
+		<tar destfile="target/Shimeji-ee_${version}_${edition}.tar.gz" compression="gzip">
+			<tarfileset dir="target">
+				<include name="Shimeji-ee.jar" />
+				<include name="src.zip" />
+			</tarfileset>
+			<mappedresources>
+				<fileset dir="conf">
+					<include name="${edition}Behavior.xml" />
+				</fileset>
+				<globmapper from="*.xml" to="conf/behaviors.xml" />
+			</mappedresources>
+			<tarfileset dir="." filemode="755">
+				<include name="Shimeji-ee.sh" />
+				<include name="Shimeji-ee.app/" />
+			</tarfileset>
+			<tarfileset dir=".">
+				<include name="ShimejiHomePage.url" />
+				<include name="Shimeji-eeHomePage.url" />
+				<include name="originallicence.txt" />
+				<include name="originalreadme.txt" />
+				<include name="licence.txt" />
+				<include name="readme.txt" />
+				<include name="changelog.txt" />
+				<include name="img/**/*" />
+				<include name="conf/**/*" />
+				<exclude name="conf/behaviors.xml" />
+				<exclude name="conf/*Behavior.xml" />
+				<include name="lib/*" />
+			</tarfileset>
+		</tar>
 	</target>
 </project>
