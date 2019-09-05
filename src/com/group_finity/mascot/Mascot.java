@@ -130,14 +130,18 @@ public class Mascot {
 
 	private void mousePressed(final MouseEvent event) {
 
-		// Switch to drag the animation when the mouse is down
-		if (getBehavior() != null) {
-			try {
-				getBehavior().mousePressed(event);
-			} catch (final CantBeAliveException e) {
-				log.log(Level.SEVERE, "Fatal Error", e);
-                                Main.showError( Main.getInstance( ).getLanguageBundle( ).getString( "SevereShimejiErrorErrorMessage" ) + "\n" + e.getMessage( ) + "\n" + Main.getInstance( ).getLanguageBundle( ).getString( "SeeLogForDetails" ) );
-				dispose();
+		if (event.isPopupTrigger()) {
+			showPopupLater(event);
+		} else {
+			// Switch to drag the animation when the mouse is down
+			if (getBehavior() != null) {
+				try {
+					getBehavior().mousePressed(event);
+				} catch (final CantBeAliveException e) {
+					log.log(Level.SEVERE, "Fatal Error", e);
+	                                Main.showError( Main.getInstance( ).getLanguageBundle( ).getString( "SevereShimejiErrorErrorMessage" ) + "\n" + e.getMessage( ) + "\n" + Main.getInstance( ).getLanguageBundle( ).getString( "SeeLogForDetails" ) );
+					dispose();
+				}
 			}
 		}
 
@@ -146,12 +150,7 @@ public class Mascot {
 	private void mouseReleased(final MouseEvent event) {
 
 		if (event.isPopupTrigger()) {
-			SwingUtilities.invokeLater(new Runnable(){
-				@Override
-				public void run() {
-					showPopup(event.getX(), event.getY());
-				}
-			});
+			showPopupLater(event);
 		} else {
 			if (getBehavior() != null) {
 				try {
@@ -164,6 +163,15 @@ public class Mascot {
 			}
 		}
 
+	}
+	
+	private void showPopupLater(final MouseEvent event) {
+		SwingUtilities.invokeLater(new Runnable(){
+			@Override
+			public void run() {
+				showPopup(event.getX(), event.getY());
+			}
+		});
 	}
 
 	private void showPopup(final int x, final int y) {

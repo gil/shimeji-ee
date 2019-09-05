@@ -423,6 +423,8 @@ public class Main
                 @Override
                 public void mousePressed( MouseEvent e )
                 {
+                	// Fix needed for Mac OS
+                	mouseReleased(e);
                 }
 
                 @Override
